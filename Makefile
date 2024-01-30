@@ -1,5 +1,5 @@
 PKG_NAME := pypi-pysaml2
-URL = https://files.pythonhosted.org/packages/5f/37/9de86b6c14924373a769d0c38749f536105e2aa74fe217716d0161939333/pysaml2-7.4.2.tar.gz
+URL = https://files.pythonhosted.org/packages/76/02/e8ecb5d1574a2add1431c8ec16dff137610f30580a7c1d6205929b3db3ee/pysaml2-7.5.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
