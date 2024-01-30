@@ -7,7 +7,7 @@
 #
 Name     : pypi-pysaml2
 Version  : 7.5.0
-Release  : 9
+Release  : 10
 URL      : https://files.pythonhosted.org/packages/76/02/e8ecb5d1574a2add1431c8ec16dff137610f30580a7c1d6205929b3db3ee/pysaml2-7.5.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/76/02/e8ecb5d1574a2add1431c8ec16dff137610f30580a7c1d6205929b3db3ee/pysaml2-7.5.0.tar.gz
 Summary  : Python implementation of SAML Version 2 Standard
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1706632450
+export SOURCE_DATE_EPOCH=1706634021
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -102,6 +102,7 @@ FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 export MAKEFLAGS=%{?_smp_mflags}
+pypi-dep-fix.py . xmlschema
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
 CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
@@ -109,6 +110,7 @@ CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 "
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
+pypi-dep-fix.py . xmlschema
 python3 -m build --wheel --skip-dependency-check --no-isolation
 
 popd
@@ -133,6 +135,7 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-pysaml2
 cp %{_builddir}/pysaml2-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-pysaml2/be8f3eb13b3dfb0e413a47009022c3c5897b60e8 || :
 python3 -m installer --destdir=%{buildroot} dist/*.whl
+pypi-dep-fix.py %{buildroot} xmlschema
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
