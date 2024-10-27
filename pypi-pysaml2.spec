@@ -7,7 +7,7 @@
 #
 Name     : pypi-pysaml2
 Version  : 7.5.0
-Release  : 10
+Release  : 11
 URL      : https://files.pythonhosted.org/packages/76/02/e8ecb5d1574a2add1431c8ec16dff137610f30580a7c1d6205929b3db3ee/pysaml2-7.5.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/76/02/e8ecb5d1574a2add1431c8ec16dff137610f30580a7c1d6205929b3db3ee/pysaml2-7.5.0.tar.gz
 Summary  : Python implementation of SAML Version 2 Standard
