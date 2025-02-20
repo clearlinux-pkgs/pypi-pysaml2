@@ -7,7 +7,7 @@
 #
 Name     : pypi-pysaml2
 Version  : 7.5.2
-Release  : 14
+Release  : 15
 URL      : https://files.pythonhosted.org/packages/36/5e/21cee84df6f14b506b20231a8c777c1fe25c1d90e197ad495978255a58c9/pysaml2-7.5.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/36/5e/21cee84df6f14b506b20231a8c777c1fe25c1d90e197ad495978255a58c9/pysaml2-7.5.2.tar.gz
 Summary  : Python implementation of SAML Version 2 Standard
@@ -89,7 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1740085300
+export SOURCE_DATE_EPOCH=1740086711
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -106,6 +106,7 @@ ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 export MAKEFLAGS=%{?_smp_mflags}
 pypi-dep-fix.py . xmlschema
+pypi-dep-fix.py . pyopenssl
 python3 -m build --wheel --skip-dependency-check --no-isolation
 
 pushd ../buildavx2/
@@ -115,6 +116,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 "
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
 pypi-dep-fix.py . xmlschema
+pypi-dep-fix.py . pyopenssl
 python3 -m build --wheel --skip-dependency-check --no-isolation
 
 popd
@@ -125,6 +127,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -mapxf -mavx10.1-512 -Wl,-z,
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 -mapxf -mavx10.1-512 "
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
 pypi-dep-fix.py . xmlschema
+pypi-dep-fix.py . pyopenssl
 python3 -m build --wheel --skip-dependency-check --no-isolation
 
 popd
@@ -150,6 +153,7 @@ mkdir -p %{buildroot}/usr/share/package-licenses/pypi-pysaml2
 cp %{_builddir}/pysaml2-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-pysaml2/be8f3eb13b3dfb0e413a47009022c3c5897b60e8 || :
 python3 -m installer --destdir=%{buildroot} dist/*.whl
 pypi-dep-fix.py %{buildroot} xmlschema
+pypi-dep-fix.py %{buildroot} pyopenssl
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
